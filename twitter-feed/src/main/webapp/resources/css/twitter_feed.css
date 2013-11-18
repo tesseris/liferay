@@ -1,0 +1,107 @@
+body {
+    background-color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+img {
+    border: none;
+}
+
+.twitter-article {
+    width: 100%;
+    border-bottom: 1px dotted #CCC;
+    float: left;
+    padding: 8px 0px 8px 0px;
+    position: relative;
+}
+.twitter-pic {
+    position: absolute;
+}
+.twitter-pic img {
+    float: left;
+    border-radius: 7px;
+    border: none;
+}
+ .twitter-text {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    padding-left: 52px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.twitter-text p {
+    margin: 0px;
+    line-height: 15px;
+}
+.twitter-text a, h1 a {
+    color: #00acee;
+    text-decoration: none;
+}
+.twitter-text a:hover, h1 a:hover {
+    text-decoration: underline;
+    color: #00acee;
+}
+.tweet-time {
+    font-size: 10px;
+    color: #878787;
+    float: right;
+}
+.tweet-time a, .tweet-time a:hover {
+    color: #878787;
+}
+.tweetprofilelink a {
+    color: #444;
+}
+.tweetprofilelink a:hover {
+    color: #444;
+}
+
+ #twitter-actions {
+    width: 75px;
+    float: right;
+    margin-right: 5px;
+    margin-top: 3px;
+    display: block;
+}
+.intent {
+    width: 25px;
+    height: 16px;
+    float: left;
+}
+.intent a {
+    width: 25px;
+    height: 16px;
+    display: block;
+    background-image: url(#{resource['images:tweet-actions.png']});
+    float : left;
+}
+.intent a:hover {
+    background-position: -25px 0px;
+}
+#intent-retweet a {
+    background-position: 0px -17px;
+}
+#intent-retweet a:hover {
+    background-position: -25px -17px;
+}
+#intent-fave a {
+    background-position: 0px -36px;
+}
+#intent-fave a:hover {
+    background-position: -25px -36px;
+}
+
+#retweet-indicator {
+    width: 14px;
+    height: 10px;
+    background-image: url(#{resource['images:tweet-actions.png']});
+    background-position : -5 px -54 px;
+    margin-top : 3 px;
+    float : left;
+}
+
+
+.aui .pagination {
+margin: 12px 0 0 0;
+}

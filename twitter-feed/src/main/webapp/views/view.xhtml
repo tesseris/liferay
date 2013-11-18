@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<h:outputStylesheet library="css" name="twitter_feed.css" />
+		<h:outputScript name="js/utils.js" />
+		<h:outputScript rendered="#{mutablePortletPreferencesValues['items_per_page'].value>0}" name="js/paginator.js" />
+	</h:head>
+	<h:body>
+
+		<div class="content">
+			<ui:repeat value="#{twitterService.tweets}" var="tweet"
+				varStatus="tweetStatus">
+
+				<h:outputText
+					rendered="#{mutablePortletPreferencesValues['items_per_page'].value>0 and tweetStatus.index%mutablePortletPreferencesValues['items_per_page'].value==0}"
+					value="&lt;div style='display:none;' class='page'&gt;"
+					escape="false" />
+
+				<div class="twitter-article" id="tw#{tweet.id}">
+					<div class="twitter-pic">
+						<a href="https://twitter.com/#{tweet.user.screenName}"
+							target="_blank"><img src="#{tweet.user.profileImageURL}"
+							width="42" height="42" alt="twitter icon" /></a>
+					</div>
+					<div class="twitter-text">
+						<p>
+							<span class="tweetprofilelink"><strong><a
+									href="https://twitter.com/#{tweet.user.screenName}"
+									target="_blank">#{tweet.user.name}</a></strong> <a
+								href="https://twitter.com/#{tweet.user.screenName}"
+								target="_blank">@#{tweet.user.screenName}</a></span><span
+								class="tweet-time"><a
+								href="https://twitter.com/#{tweet.user.screenName}/status/#{tweet.id}"
+								target="_blank"> <h:outputText value="#{tweet.createdAt}">
+										<f:convertDateTime pattern="dd MMM" />
+									</h:outputText></a></span><br />
+							<h:outputText escape="false"
+								value="#{helpUtils.parse(tweet.text)}" />
+						</p>
+						<div id="twitter-actions">
+							<div class="intent" id="intent-reply">
+								<a onclick="return openPopup(this)"
+									href="https://twitter.com/intent/tweet?in_reply_to=#{tweet.id}"
+									title="Reply"></a>
+							</div>
+							<div class="intent" id="intent-retweet">
+								<a onclick="return openPopup(this)"
+									href="https://twitter.com/intent/retweet?tweet_id=#{tweet.id}"
+									title="Retweet"></a>
+							</div>
+							<div class="intent" id="intent-fave">
+								<a onclick="return openPopup(this)"
+									href="https://twitter.com/intent/favorite?tweet_id=#{tweet.id}"
+									title="Favourite"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<h:outputText
+					rendered="#{mutablePortletPreferencesValues['items_per_page'].value>0 and (tweetStatus.last or (tweetStatus.index + 1)%mutablePortletPreferencesValues['items_per_page'].value == 0)}"
+					value="&lt;/div&gt;" escape="false" />
+			</ui:repeat>
+		</div>
+		<div style="clear: both"></div>
+
+		<h:panelGroup
+			rendered="#{mutablePortletPreferencesValues['items_per_page'].value>0}">
+			<div id="pagination" class="pagination pagination-centered">
+				<ul class="pagination-content">
+					<li><a href="#">Prev</a></li>
+
+					<ui:repeat value="#{twitterService.tweets}" var="tweet"
+						varStatus="tweetStatus"
+						step="#{mutablePortletPreferencesValues['items_per_page'].value}">
+						<li><a href="#">#{myVarStatus.index}</a></li>
+					</ui:repeat>
+					<li><a href="#">Next</a></li>
+
+				</ul>
+			</div>
+		</h:panelGroup>
+		
+		<div style="clear: both"></div>
+		
+	</h:body>
+</f:view>

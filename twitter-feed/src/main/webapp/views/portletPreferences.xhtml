@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:example-cc="http://java.sun.com/jsf/composite/example-cc"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<h:messages globalOnly="true" />
+		<h:panelGrid columns="2" cellpadding="10">
+
+			<h:outputLabel for="twitter_consumer_key"
+				value="Twitter Consumer Key: " />
+			<h:inputText id="twitter_consumer_key"
+				value="#{mutablePortletPreferencesValues['twitter_consumer_key'].value}" />
+
+			<h:outputLabel for="twitter_consumer_secret"
+				value="Twitter Consumer Secret: " />
+			<h:inputText id="twitter_consumer_secret"
+				value="#{mutablePortletPreferencesValues['twitter_consumer_secret'].value}" />
+
+			<h:outputLabel for="access_token" value="Access Token: " />
+			<h:inputText id="access_token"
+				value="#{mutablePortletPreferencesValues['access_token'].value}" />
+
+			<h:outputLabel for="access_token_secret"
+				value="Access Token Secret: " />
+			<h:inputText id="access_token_secret"
+				value="#{mutablePortletPreferencesValues['access_token_secret'].value}" />
+
+		
+			<h:outputLabel for="items_per_page" value="Items Per Page: " />
+			<h:inputText id="items_per_page"
+				value="#{mutablePortletPreferencesValues['items_per_page'].value}" />
+
+			<h:outputLabel for="number_of_tweets" value="Number Of Tweets: " />
+			<h:inputText id="number_of_tweets"
+				value="#{mutablePortletPreferencesValues['number_of_tweets'].value}" />
+		</h:panelGrid>
+
+		<hr />
+
+		<h:commandButton
+			actionListener="#{portletPreferencesBackingBean.submit}"
+			value="#{i18n['submit']}" />
+		<h:commandButton
+			actionListener="#{portletPreferencesBackingBean.reset}"
+			value="#{i18n['reset']}" />
+	</h:form>
+
+</ui:composition>
